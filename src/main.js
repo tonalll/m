@@ -6,13 +6,14 @@ import VueRouter from 'vue-router'
 import Hello from './components/Hello.vue'
 import Aaa from './components/Aaa.vue'
 import Bbb from './components/Bbb.vue'
+import Home from './components/Home.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/' },
+    { path: '/' ,component:Home},
     // params are denoted with a colon ":"
     { path: '/aaa',component:Aaa },
     // a param can be made optional by adding "?"
