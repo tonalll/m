@@ -6,26 +6,36 @@
   <div class="" style="flex:1;">
     <router-view keep-alive transition transition-mode="out-in"></router-view>
   </div>
-  <div class="" style="">
-    <router-link to="/">首页</router-link>
-    <router-link to="/aaa">aaa</router-link>
-    <router-link to="/bbb">bbb</router-link>
-    <router-link tag="span" to="/bbb">
-      <span>bbb</span>
-    </router-link>
+  <div class="">
 
+    <Row total=3 class="" bgColor='#ddd'>
+      <lCol width='100%'>
+      <router-link to="/">首页</router-link>
+    </lCol>
+      <lCol width='100%'>
+      <router-link to="/aaa">aaa</router-link>
+    </lCol>
+      <lCol width='100%'>
+      <router-link tag="span" to="/bbb">
+        <span>bbb</span>
+      </router-link>
+    </lCol>
+    </Row>
   </div>
-
 </div>
 </template>
 
 <script>
-import Tmp from './components/Tmp'
+import Tmp from './components/Tmp.vue'
+import lCol from './components/Col.vue'
+import Row from './components/Row.vue'
 
 export default {
   name: 'app',
   components: {
-    Tmp
+    Tmp,
+    lCol,
+    Row
   }
 }
 </script>
