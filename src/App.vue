@@ -1,6 +1,6 @@
 <template>
 <div style="width:100%;height:100%;display:flex; flex-direction: column;">
-  <div class="" style="">
+  <div class="" style="height:1rem;background:#333;color:#fff;">
     头部
   </div>
   <div class="" style="flex:1;">
@@ -9,7 +9,11 @@
   <div class="">
 
     <Row total=3 class="" bgColor='#ddd'>
-      <lCol width='100%'>
+      <lCol v-for='_menu in menu' width='100%'>
+      <router-link :to=_menu.url>{{_menu.title}}</router-link>
+    </lCol>
+
+      <!-- <lCol width='100%'>
       <router-link to="/">首页</router-link>
     </lCol>
       <lCol width='100%'>
@@ -19,7 +23,7 @@
       <router-link tag="span" to="/bbb">
         <span>bbb</span>
       </router-link>
-    </lCol>
+    </lCol> -->
     </Row>
   </div>
 </div>
@@ -32,6 +36,26 @@ import Row from './components/Row.vue'
 
 export default {
   name: 'app',
+  data(){
+    return{
+      menu:[]
+    }
+  },
+  mounted(){
+    var vm=this;
+    var config={
+      syncURL:"https://m-vue.wilddogio.com"
+    };
+    wilddog.initializeApp(config);
+    var ref=wilddog.sync().ref();
+    // g.addObj('ref',ref)
+    ref.child('/').on('child_added',function(snapshot){
+      var text=snapshot.val();
+      vm.menu.push(text);
+      console.info('新增节点',text);
+    });
+
+  },
   components: {
     Tmp,
     lCol,
